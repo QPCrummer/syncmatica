@@ -12,10 +12,7 @@ public class SyncmaticaMaterialList {
 
     public SyncmaticaMaterialEntry getUnclaimedEntry() {
         final Optional<SyncmaticaMaterialEntry> unclaimed = list.parallelStream().filter(SyncmaticaMaterialEntry.UNFINISHED).filter(SyncmaticaMaterialEntry.UNCLAIMED).findFirst();
-        if (unclaimed.isPresent()) {
-            return unclaimed.get();
-        }
-        return null;
+        return unclaimed.orElse(null);
     }
 
     public Collection<DeliveryPosition> getDeliveryPosition(final SyncmaticaMaterialEntry entry) {

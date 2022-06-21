@@ -10,8 +10,8 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 public interface MixinCustomPayloadC2SPacket {
 
     @Accessor("channel")
-    public Identifier getChannel();
+    Identifier getChannel();
 
     @Accessor("data")
-    public PacketByteBuf getData();
+    PacketByteBuf getData();
 }

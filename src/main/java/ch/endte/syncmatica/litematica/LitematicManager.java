@@ -67,7 +67,7 @@ public class LitematicManager {
     // 1st case syncmatic placement is present and is now enabled from GUI
     // or another source
     public void renderSyncmatic(final ServerPlacement placement) {
-        final String dimension = MinecraftClient.getInstance().getCameraEntity().getEntityWorld().getRegistryKey().getValue().toString();
+        final String dimension = Objects.requireNonNull(MinecraftClient.getInstance().getCameraEntity()).getEntityWorld().getRegistryKey().getValue().toString();
         if (!dimension.equals(placement.getDimension())) {
             ScreenHelper.ifPresent(s -> s.addMessage(Message.MessageType.ERROR, "syncmatica.error.player_dimension_mismatch"));
             context.getSyncmaticManager().updateServerPlacement(placement);
@@ -118,6 +118,7 @@ public class LitematicManager {
         }
         try {
             final File placementFile = schem.getSchematicFile();
+            assert placementFile != null;
             final FileType fileType = FileType.fromFile(placementFile);
             if (fileType == FileType.VANILLA_STRUCTURE || fileType == FileType.SCHEMATICA_SCHEMATIC) {
                 ScreenHelper.ifPresent(s -> s.addMessage(Message.MessageType.ERROR, "syncmatica.error.share_incompatible_schematic"));
@@ -133,7 +134,7 @@ public class LitematicManager {
 
             final ServerPlacement placement = new ServerPlacement(UUID.randomUUID(), placementFile, owner);
             // thanks miniHUD
-            final String dimension = MinecraftClient.getInstance().getCameraEntity().getEntityWorld().getRegistryKey().getValue().toString();
+            final String dimension = Objects.requireNonNull(MinecraftClient.getInstance().getCameraEntity()).getEntityWorld().getRegistryKey().getValue().toString();
             placement.move(dimension, schem.getOrigin(), schem.getRotation(), schem.getMirror());
             transferSubregionDataToServerPlacement(schem, placement);
             return placement;

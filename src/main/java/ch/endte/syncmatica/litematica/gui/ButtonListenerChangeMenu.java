@@ -20,14 +20,10 @@ public class ButtonListenerChangeMenu implements IButtonActionListener {
     public void actionPerformedWithButton(final ButtonBase arg0, final int arg1) {
         GuiBase gui = null;
         switch (type) {
-            case MATERIAL_GATHERINGS:
-                LogManager.getLogger().info("Opened Material Gatherings GUI - currently unsupported operation");
-                break;
-            case VIEW_SYNCMATICS:
-                gui = new GuiSyncmaticaServerPlacementList();
-                break;
-            default:
-                break;
+            case MATERIAL_GATHERINGS -> LogManager.getLogger().info("Opened Material Gatherings GUI - currently unsupported operation");
+            case VIEW_SYNCMATICS -> gui = new GuiSyncmaticaServerPlacementList();
+            default -> {
+            }
         }
         if (gui != null) {
             gui.setParent(parent);

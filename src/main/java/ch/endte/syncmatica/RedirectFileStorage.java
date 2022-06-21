@@ -63,8 +63,8 @@ public class RedirectFileStorage implements IFileStorage {
         fs.setContext(con);
     }
 
-    private class RedirectData {
-        File redirect = null;
+    private static class RedirectData {
+        File redirect;
         UUID hash = null;
         long hashTimeStamp;
 

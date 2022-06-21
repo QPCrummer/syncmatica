@@ -128,7 +128,7 @@ public class ServerPlacement {
     }
 
     private static UUID generateHash(final File file) {
-        UUID hash = null;
+        UUID hash;
         try {
             hash = SyncmaticaUtil.createChecksum(new FileInputStream(file));
         } catch (final Exception e) {
